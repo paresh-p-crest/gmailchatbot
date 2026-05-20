@@ -2,6 +2,8 @@
 
 Gmail Talk AI is an AI-powered dashboard that lets users securely connect Gmail via **OAuth 2.0**, sync recent messages into an **AWS S3 data lake**, and ask natural-language questions using **Retrieval-Augmented Generation (RAG)** powered by **Amazon Bedrock Knowledge Bases**.
 
+**Production (Vercel):** [https://gmailchatbot.vercel.app/](https://gmailchatbot.vercel.app/)
+
 ---
 
 ## Table of Contents
@@ -144,10 +146,12 @@ Chat URL is derived by replacing `/ingest` with `/chat`.
 2. Type: **Web application**.
 3. **Authorized JavaScript origins**
    - `http://localhost:5173`
-   - `https://<your-app>.vercel.app` (after deployment)
+   - `https://gmailchatbot.vercel.app` — production UI for this repo ([live app](https://gmailchatbot.vercel.app/))
+   - `https://<your-app>.vercel.app` — add your URL if you deploy a separate Vercel project
 4. **Authorized redirect URIs** (must match `OAUTH_REDIRECT_URI` on the ingest Lambda exactly)
    - `http://localhost:5173`
-   - `https://<your-app>.vercel.app`
+   - `https://gmailchatbot.vercel.app`
+   - `https://<your-app>.vercel.app` (if applicable)
 5. Copy **Client ID** → frontend (`GOOGLE_CLIENT_ID` or `VITE_GOOGLE_CLIENT_ID`).
 6. Copy **Client secret** → **SSM only** (`/gmind/client_secret`), never the React bundle.
 
@@ -416,7 +420,7 @@ npm run dev
 
 Open `http://localhost:5173`.
 
-Ensure ingest Lambda `OAUTH_REDIRECT_URI=http://localhost:5173` matches Google Console.
+Ensure ingest Lambda `OAUTH_REDIRECT_URI` matches Google Console: `http://localhost:5173` for local dev, or `https://gmailchatbot.vercel.app` for [production](https://gmailchatbot.vercel.app/) (no trailing path).
 
 ### 8.3 Build
 
@@ -435,9 +439,9 @@ Output: `dist/` (static assets for hosting).
 5. Environment variables:
    - `VITE_GOOGLE_CLIENT_ID`
    - `VITE_AWS_API_URL`
-6. Deploy and copy the production URL.
+6. Deploy and copy the production URL (this project: **https://gmailchatbot.vercel.app** — [open site](https://gmailchatbot.vercel.app/)).
 7. Add that URL to Google OAuth **origins** and **redirect URIs**.
-8. Set ingest Lambda `OAUTH_REDIRECT_URI` to the same Vercel URL (no trailing path).
+8. Set ingest Lambda `OAUTH_REDIRECT_URI` to the same Vercel URL (no trailing path), e.g. `https://gmailchatbot.vercel.app`.
 
 ### 8.5 Deploy Lambdas
 
