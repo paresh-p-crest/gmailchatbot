@@ -19,7 +19,7 @@ SSM_CLIENT_SECRET_PARAM = os.environ.get("SSM_GOOGLE_CLIENT_SECRET", "/gmind/cli
 
 BUCKET = os.environ.get("S3_BUCKET", "lexiguard-gmail-data-ps-b402")
 TOKEN_KEY = os.environ.get("TOKEN_S3_KEY", "private/token.json")
-REDIRECT_URI = os.environ.get("OAUTH_REDIRECT_URI", "http://localhost:5173")
+REDIRECT_URI = os.environ.get("OAUTH_REDIRECT_URI", "https://gmailchatbot.vercel.app")
 # One .txt per email for Bedrock KB — data source: s3://<bucket>/ingest/
 KB_PREFIX = os.environ.get("KB_S3_PREFIX", "ingest/")
 DISPLAY_TZ = ZoneInfo(os.environ.get("DISPLAY_TIMEZONE", "Asia/Kolkata"))

@@ -46,7 +46,7 @@ BYE_PATTERN = re.compile(
 )
 
 PROMPT_TEMPLATE = (
-    "You are G-Mind, a friendly Gmail assistant. Answer using the retrieved email documents when the "
+    "You are Gmail Talk AI, a friendly Gmail assistant. Answer using the retrieved email documents when the "
     "question is about the user's emails.\n\n"
     "CRITICAL INSTRUCTIONS:\n"
     "0. SMALL TALK: If the user only greets you, says thanks, ok, or asks how you are — reply warmly "
@@ -95,7 +95,7 @@ def _try_casual_reply(question: str, emails: list) -> Optional[str]:
             return f"Good morning! Hope you're having a nice start to the day.{hint}"
         if "evening" in q or "afternoon" in q:
             return f"Hello! Good to see you.{hint}"
-        return f"Hey! I'm G-Mind — here to help with your Gmail.{hint}"
+        return f"Hey! I'm Gmail Talk AI — here to help with your Gmail.{hint}"
 
     if HOW_ARE_YOU_PATTERN.match(q):
         return (

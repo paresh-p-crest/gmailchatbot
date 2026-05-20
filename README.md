@@ -1,6 +1,6 @@
-# G-Mind AI: Serverless Gmail Intelligence Platform
+# Gmail Talk AI: Serverless Gmail Intelligence Platform
 
-G-Mind AI is an AI-powered dashboard that lets users securely connect Gmail via **OAuth 2.0**, sync recent messages into an **AWS S3 data lake**, and ask natural-language questions using **Retrieval-Augmented Generation (RAG)** powered by **Amazon Bedrock Knowledge Bases**.
+Gmail Talk AI is an AI-powered dashboard that lets users securely connect Gmail via **OAuth 2.0**, sync recent messages into an **AWS S3 data lake**, and ask natural-language questions using **Retrieval-Augmented Generation (RAG)** powered by **Amazon Bedrock Knowledge Bases**.
 
 ---
 
@@ -20,7 +20,7 @@ G-Mind AI is an AI-powered dashboard that lets users securely connect Gmail via 
 
 ## 1. Project Overview
 
-G-Mind AI provides a single-page experience:
+Gmail Talk AI provides a single-page experience:
 
 | Capability | Description |
 |------------|-------------|
@@ -56,8 +56,8 @@ flowchart LR
 
     subgraph AWS
         AG[API Gateway]
-        LI[Lambda: GMind-Gmail-Ingestor]
-        LC[Lambda: GMind-Chat-Engine]
+        LI[Lambda: Gmail Talk — Ingest]
+        LC[Lambda: Gmail Talk — Chat]
         SSM[SSM Parameter Store]
         S3[(S3 Data Lake)]
         BKB[Bedrock Knowledge Base]
@@ -91,8 +91,8 @@ flowchart LR
 
 | Action | Frontend | API route | Lambda |
 |--------|----------|-----------|--------|
-| Sign in / Resync | `useGoogleLogin` → `POST` body `{ code, limit }` or `{ limit }` | `POST /dev/ingest` | **GMind-Gmail-Ingestor** |
-| Chat | `handleChat` → `POST` body `{ question, emails }` | `POST /dev/chat` | **GMind-Chat-Engine** |
+| Sign in / Resync | `useGoogleLogin` → `POST` body `{ code, limit }` or `{ limit }` | `POST /dev/ingest` | **Gmail Talk — Ingest** (e.g. `GMind-Gmail-Ingestor` in AWS) |
+| Chat | `handleChat` → `POST` body `{ question, emails }` | `POST /dev/chat` | **Gmail Talk — Chat** (e.g. `GMind-Chat-Engine` in AWS) |
 
 Default API base (configure in `src/App.jsx` or env):
 
@@ -199,7 +199,7 @@ On each sync, the ingestor **deletes** previous `ingest/*.txt` and legacy `inges
 
 > If your Knowledge Base uses **S3 Vectors**, Bedrock may also maintain vector/index metadata under additional prefixes configured in the console. Application code only writes `ingest/` and `private/`.
 
-### 4.3 Lambda: GMind-Gmail-Ingestor
+### 4.3 Lambda: Gmail Talk — Ingest (`GMind-Gmail-Ingestor`)
 
 **Source:** `lambda/GMind-Gmail-Ingestor-Sevenprs_lambda_function.py`
 
@@ -225,7 +225,7 @@ On each sync, the ingestor **deletes** previous `ingest/*.txt` and legacy `inges
 
 \*Required for sign-in; must match Google Console redirect URI.
 
-### 4.4 Lambda: GMind-Chat-Engine
+### 4.4 Lambda: Gmail Talk — Chat (`GMind-Chat-Engine`)
 
 **Source:** `lambda/GMind-Chat-Engine_lambda_function.py`
 
@@ -258,7 +258,7 @@ On each sync, the ingestor **deletes** previous `ingest/*.txt` and legacy `inges
 
 | Setting | Value |
 |---------|--------|
-| **Knowledge base name** | e.g. `GMind-Email-KB` |
+| **Knowledge base name** | e.g. `GmailTalk-Email-KB` |
 | **Embeddings** | Amazon **Titan Text Embeddings v2** (or model available in your region) |
 | **Vector store** | **S3 Vectors** (cost-effective vs. OpenSearch Serverless for demos) |
 | **Data source S3 URI** | `s3://<bucket>/` with inclusion/lifecycle so only **`ingest/*.txt`** is indexed |
@@ -409,7 +409,7 @@ VITE_AWS_API_URL=https://....amazonaws.com/dev/ingest
 ### 8.2 Local development
 
 ```bash
-cd gmind-ui
+cd path/to/your-repo   # e.g. gmail-talk-ai or gmind-ui
 npm install
 npm run dev
 ```
@@ -448,7 +448,7 @@ Package `lambda/GMind-Gmail-Ingestor-Sevenprs_lambda_function.py` and `lambda/GM
 ## 9. Repository Layout
 
 ```
-gmind-ui/
+gmail-talk-ai/   _(or your clone folder name, e.g. `gmind-ui`)_
 ├── src/
 │   ├── App.jsx              # Main UI: OAuth, sync feed, chat, toasts
 │   ├── main.jsx

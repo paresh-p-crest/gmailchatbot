@@ -222,7 +222,7 @@ const AppContent = () => {
       <div className="min-h-screen bg-slate-950 text-white flex items-center justify-center p-6">
         <div className="max-w-md w-full bg-slate-900 border border-slate-800 rounded-3xl p-8 text-center shadow-2xl">
           <Sparkles className="text-blue-500 mx-auto mb-4" size={48} />
-          <h1 className="text-3xl font-bold mb-2">G-Mind AI</h1>
+          <h1 className="text-3xl font-bold mb-2">Gmail Talk AI</h1>
           <p className="text-slate-400 text-sm mb-8">Login to analyze your Gmail with Bedrock</p>
           
           <div className="mb-6 text-left">
@@ -284,7 +284,7 @@ const AppContent = () => {
       <nav className="border-b border-slate-800 bg-slate-900/50 px-8 py-4 flex items-center justify-between sticky top-0 z-10 backdrop-blur-md">
         <div className="flex items-center gap-2">
           <Sparkles className="text-blue-500" size={24} />
-          <span className="font-bold text-xl tracking-tight">G-Mind AI</span>
+          <span className="font-bold text-xl tracking-tight">Gmail Talk AI</span>
         </div>
         
         <div className="flex items-center gap-6">
@@ -411,7 +411,7 @@ const AppContent = () => {
             <div className="flex gap-3 bg-slate-800 p-2 rounded-2xl border border-slate-700 focus-within:border-blue-500 transition-all">
             <input 
               className="bg-transparent border-0 flex-grow px-4 text-sm outline-none placeholder:text-slate-500 disabled:opacity-50 disabled:cursor-not-allowed" 
-              placeholder={isResyncing ? "Syncing inbox…" : "Ask G-Mind AI..."}
+              placeholder={isResyncing ? "Syncing inbox…" : "Ask Gmail Talk AI..."}
               value={chatInput}
               disabled={isResyncing || isChatting}
               onChange={(e)=>setChatInput(e.target.value)}
