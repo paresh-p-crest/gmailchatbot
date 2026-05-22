@@ -223,7 +223,10 @@ const AppContent = () => {
         <div className="max-w-md w-full bg-slate-900 border border-slate-800 rounded-3xl p-8 text-center shadow-2xl">
           <Sparkles className="text-blue-500 mx-auto mb-4" size={48} />
           <h1 className="text-3xl font-bold mb-2">Gmail Talk AI</h1>
-          <p className="text-slate-400 text-sm mb-8">Login to analyze your Gmail with Bedrock</p>
+          <p className="text-slate-400 text-sm mb-2">Amazon Bedrock Knowledge Base · Gmail RAG chat</p>
+          <p className="text-[11px] text-slate-600 mb-8">
+            Made by <span className="text-slate-500 font-medium">PRS</span>
+          </p>
           
           <div className="mb-6 text-left">
             <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2 block">Initial Sync Depth</label>
@@ -368,7 +371,7 @@ const AppContent = () => {
           <div className="p-6 border-b border-slate-800 flex items-center justify-between bg-slate-900/80 shrink-0">
             <div>
               <h2 className="font-bold text-lg flex items-center gap-2"><MessageSquare className="text-purple-500" size={20}/> Email Intelligence</h2>
-              <p className="text-[10px] text-slate-500">Knowledge Base Active • Claude 3.5 Sonnet</p>
+              <p className="text-[10px] text-slate-500">Amazon Bedrock Knowledge Base · Gmail RAG chat</p>
             </div>
           </div>
 
@@ -391,7 +394,7 @@ const AppContent = () => {
                  <div className={`max-w-[80%] p-4 rounded-2xl text-sm leading-relaxed ${
                     msg.role === 'user' 
                     ? 'bg-blue-600 text-white rounded-tr-none' 
-                    : 'bg-slate-800 text-slate-200 border border-slate-700 rounded-tl-none whitespace-pre-line' // <--- ADD THIS CLASS
+                    : 'bg-slate-800 text-slate-200 border border-slate-700 rounded-tl-none whitespace-pre-line'
                   }`}>
                     {msg.text}
                   </div>
