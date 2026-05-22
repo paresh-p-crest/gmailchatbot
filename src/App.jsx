@@ -306,10 +306,19 @@ const AppContent = () => {
             )}
             <span className="text-sm font-medium">{user.name}</span>
           </div>
-          <p className="text-[11px] text-slate-600 whitespace-nowrap">
-            Made by <span className="text-slate-500 font-medium">PRS</span>
-          </p>
-          <button onClick={() => setShowLogoutConfirm(true)} className="text-slate-400 hover:text-red-400 transition-colors"><LogOut size={20} /></button>
+          <div className="flex flex-col items-center gap-0.5">
+            <button
+              type="button"
+              onClick={() => setShowLogoutConfirm(true)}
+              className="text-slate-400 hover:text-red-400 transition-colors p-1"
+              title="Sign out"
+            >
+              <LogOut size={20} />
+            </button>
+            <p className="text-[10px] text-slate-600 whitespace-nowrap leading-tight">
+              Made by <span className="text-slate-500 font-medium">PRS</span>
+            </p>
+          </div>
         </div>
       </nav>
 
