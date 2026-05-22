@@ -306,6 +306,9 @@ const AppContent = () => {
             )}
             <span className="text-sm font-medium">{user.name}</span>
           </div>
+          <p className="text-[11px] text-slate-600 whitespace-nowrap">
+            Made by <span className="text-slate-500 font-medium">PRS</span>
+          </p>
           <button onClick={() => setShowLogoutConfirm(true)} className="text-slate-400 hover:text-red-400 transition-colors"><LogOut size={20} /></button>
         </div>
       </nav>
